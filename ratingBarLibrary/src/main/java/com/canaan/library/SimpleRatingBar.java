@@ -21,7 +21,6 @@ public class SimpleRatingBar extends View {
     private int starNum;
     private float rating;
     private Drawable starDrawable;
-    private Shape shape;
     private int progressColor;
     private int backgroundColor;
     private boolean isStarClickable;
@@ -45,7 +44,7 @@ public class SimpleRatingBar extends View {
     public SimpleRatingBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        shape = new StarShape();
+        Shape shape = new StarShape();
         shapeDerecotor = new StarDecorator(shape);
 
         initAttr(attrs);
@@ -79,6 +78,14 @@ public class SimpleRatingBar extends View {
         mPaint.setAntiAlias(true);
         mPaint.setStrokeWidth(1);
         mPaint.setStyle(Paint.Style.FILL);
+    }
+
+    public ShapeDerecotor getShapeDerecotor() {
+        return shapeDerecotor;
+    }
+
+    public void setShapeDerecotor(ShapeDerecotor shapeDerecotor) {
+        this.shapeDerecotor = shapeDerecotor;
     }
 
     @Override
