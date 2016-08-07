@@ -2,9 +2,6 @@ package com.canaan.library;
 
 import android.graphics.Path;
 
-/**
- * Created by mac on 16/4/8.
- */
 public class StarShape implements Shape {
 
     public float x,y;
@@ -24,7 +21,7 @@ public class StarShape implements Shape {
                 (float)(x + innerRadius * Math.cos(0 + section/2.0)),
                 (float)(y + innerRadius * Math.sin(0 + section/2.0)));
 
-        for(int i=1; i<numOfCorner; i++){
+        for(int i = 1; i < numOfCorner; i++){
             path.lineTo(
                     (float)(x + radius * Math.cos(section * i)),
                     (float)(y + radius * Math.sin(section * i)));

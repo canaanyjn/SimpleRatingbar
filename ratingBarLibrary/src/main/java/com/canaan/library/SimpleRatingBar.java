@@ -12,9 +12,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * Created by mac on 16/4/8.
- */
 public class SimpleRatingBar extends View {
     private int starSpace;
     private float stepSize;
@@ -27,7 +24,7 @@ public class SimpleRatingBar extends View {
 
     private Paint mPaint;
     private Rect starsBoundRect = new Rect();
-    private ShapeDerecotor shapeDerecotor;
+    private ShapeDecorator shapeDecorator;
 
     private int mWidth = 100;
     private int mHeight = 20;
@@ -45,7 +42,7 @@ public class SimpleRatingBar extends View {
         super(context, attrs, defStyleAttr);
 
         Shape shape = new StarShape();
-        shapeDerecotor = new StarDecorator(shape);
+        shapeDecorator = new StarDecorator(shape);
 
         initAttr(attrs);
         initPaint();
@@ -66,9 +63,9 @@ public class SimpleRatingBar extends View {
             isStarClickable = array.getBoolean(R.styleable.SimpleRatingBar_isStarClicable,false);
             array.recycle();
 
-            shapeDerecotor.setWidth(starWidth);
-            shapeDerecotor.setHeight(starHeight);
-            shapeDerecotor.initDefShape();
+            shapeDecorator.setWidth(starWidth);
+            shapeDecorator.setHeight(starHeight);
+            shapeDecorator.initDefShape();
         }
     }
 
@@ -80,12 +77,12 @@ public class SimpleRatingBar extends View {
         mPaint.setStyle(Paint.Style.FILL);
     }
 
-    public ShapeDerecotor getShapeDerecotor() {
-        return shapeDerecotor;
+    public ShapeDecorator getShapeDecorator() {
+        return shapeDecorator;
     }
 
-    public void setShapeDerecotor(ShapeDerecotor shapeDerecotor) {
-        this.shapeDerecotor = shapeDerecotor;
+    public void setShapeDecorator(ShapeDecorator shapeDecorator) {
+        this.shapeDecorator = shapeDecorator;
     }
 
     @Override
@@ -98,7 +95,7 @@ public class SimpleRatingBar extends View {
 
         int boundWidth = getStarsBoundWidth();
         mWidth = boundWidth > mWidth ? boundWidth : mWidth;
-        mHeight = shapeDerecotor.getHeight()> mHeight ? (int)shapeDerecotor.getHeight() : mHeight;
+        mHeight = shapeDecorator.getHeight()> mHeight ? (int) shapeDecorator.getHeight() : mHeight;
 
         if (widhtMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST) {
             setMeasuredDimension(mWidth,mHeight);
@@ -119,26 +116,26 @@ public class SimpleRatingBar extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        getRect((int)shapeDerecotor.getRadius(),(int)shapeDerecotor.getY());
+        getRect((int) shapeDecorator.getRadius(), (int) shapeDecorator.getY());
 
         canvas.save();
         mPaint.setColor(backgroundColor);
         canvas.clipRect(starsBoundRect, Region.Op.DIFFERENCE);
         for (int i = 0;i < starNum ;i++) {
-            float startX = shapeDerecotor.getX() + starSpace + shapeDerecotor.getRadius() * 2;
-            shapeDerecotor.setX(startX);
-            canvas.drawPath(shapeDerecotor.getPath(),mPaint);
+            float startX = shapeDecorator.getX() + starSpace + shapeDecorator.getRadius() * 2;
+            shapeDecorator.setX(startX);
+            canvas.drawPath(shapeDecorator.getPath(),mPaint);
         }
         canvas.restore();
         mPaint.setColor(progressColor);
 
         canvas.save();
         canvas.clipRect(starsBoundRect);
-        float startX = shapeDerecotor.getInitialX();
+        float startX = shapeDecorator.getInitialX();
         for (int i = 0;i < starNum;i++) {
-            shapeDerecotor.setX(startX);
-            canvas.drawPath(shapeDerecotor.getPath(),mPaint);
-            startX += starSpace + shapeDerecotor.getRadius() * 2;
+            shapeDecorator.setX(startX);
+            canvas.drawPath(shapeDecorator.getPath(),mPaint);
+            startX += starSpace + shapeDecorator.getRadius() * 2;
         }
         canvas.restore();
     }
@@ -163,7 +160,7 @@ public class SimpleRatingBar extends View {
     }
 
     private int getStarsBoundWidth () {
-        return (int)shapeDerecotor.getWidth() * starNum + starSpace * (starNum - 1);
+        return (int) shapeDecorator.getWidth() * starNum + starSpace * (starNum - 1);
     }
 
     public void getRect(int radius,int startY) {

@@ -2,9 +2,6 @@ package com.canaan.library;
 
 import android.graphics.Path;
 
-/**
- * Created by mac on 16/7/9.
- */
 public interface Shape {
 
     Path getPath();

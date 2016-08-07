@@ -2,14 +2,11 @@ package com.canaan.library;
 
 import android.graphics.Path;
 
-/**
- * Created by mac on 16/7/9.
- */
-public abstract class ShapeDerecotor implements Shape{
+public abstract class ShapeDecorator implements Shape{
 
     Shape shape;
 
-    public ShapeDerecotor(Shape shape) {
+    public ShapeDecorator(Shape shape) {
         this.shape = shape;
     }
 

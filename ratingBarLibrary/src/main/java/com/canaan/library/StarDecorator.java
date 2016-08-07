@@ -1,9 +1,6 @@
 package com.canaan.library;
 
-/**
- * Created by mac on 16/7/9.
- */
-public class StarDecorator extends ShapeDerecotor{
+public class StarDecorator extends ShapeDecorator {
 
     public StarDecorator(Shape shape) {
         super(shape);
@@ -13,7 +10,7 @@ public class StarDecorator extends ShapeDerecotor{
     public void initDefShape() {
         computeRadius();
         shape.setInnerRadius(shape.getRadius() / 2);
-        shape.setX(Float.parseFloat(shape.getRadius() * Math.cos(36/180*Math.PI)+""));
+        shape.setX(Float.parseFloat(shape.getRadius() * Math.cos(36 / 180 * Math.PI) + ""));
         shape.setY(Float.parseFloat(shape.getRadius() * Math.sin(Math.toRadians(72)) + ""));
         shape.setNumOfCorner(5);
     }
@@ -69,12 +66,12 @@ public class StarDecorator extends ShapeDerecotor{
 
     @Override
     public float getInitialX() {
-        return Float.parseFloat(shape.getRadius() * Math.cos(36/180*Math.PI)+"");
+        return Float.parseFloat(shape.getRadius() * Math.cos(36 / 180 * Math.PI) + "");
     }
 
     @Override
     public float getInitialY() {
-        return Float.parseFloat(shape.getRadius() * Math.cos(36/180*Math.PI)+"");
+        return Float.parseFloat(shape.getRadius() * Math.cos(36 / 180 * Math.PI) + "");
     }
 
 }
